@@ -287,6 +287,10 @@ export function useTerminalSession({ cwd, onAddSelectionToChat }: UseTerminalSes
       fontFamily: "'SF Mono', 'Menlo', 'Cascadia Code', 'JetBrains Mono', monospace",
       fontSize: 11,
       lineHeight: 1.12,
+      // Full-screen TUIs (hermes --tui, vim) grab the mouse, so a plain drag
+      // can't select — ⌥-drag (macOS) / Shift-drag (else) forces a native
+      // selection over mouse-mode apps, which ⌘/Ctrl+L then sends to chat.
+      macOptionClickForcesSelection: true,
       macOptionIsMeta: true,
       scrollback: 1000,
       theme: initialThemeRef.current
